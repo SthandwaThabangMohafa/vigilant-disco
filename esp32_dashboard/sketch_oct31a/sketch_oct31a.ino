@@ -1,15 +1,13 @@
 #include <WiFi.h>
 #include <HTTPClient.h>
 
-// Replace with your Wi-Fi credentials
 const char* ssid = "iPhone"; 
 const char* password = "87654321"; 
 
-// Pins configuration
 const int trigPin = 18;
 const int echoPin = 5;
-const int buzzerPin = 23; // Pin for buzzer
-const int motorPin = 22;  // Pin for vibration motor
+const int buzzerPin = 23; 
+const int motorPin = 22; 
 
 void setup() {
     Serial.begin(115200);
@@ -19,10 +17,8 @@ void setup() {
     pinMode(motorPin, OUTPUT);
     WiFi.begin(ssid, password);
 
-    // Wait for connection
     while (WiFi.status() != WL_CONNECTED) {
         delay(1000);
-        //Serial.println("Connecting to WiFi...");
     }
     Serial.println("Connected to WiFi");
 }
@@ -37,10 +33,10 @@ void loop() {
     duration = pulseIn(echoPin, HIGH);
     distance = (duration * 0.034) / 2;
 
-    if (distance > 0 && distance < 20) { // Example threshold
+    if (distance > 0 && distance < 20) {
         // Activate buzzer and motor
-        digitalWrite(buzzerPin, HIGH); // Turn on buzzer
-        digitalWrite(motorPin, HIGH);   // Turn on vibration motor
+        digitalWrite(buzzerPin, HIGH);
+        digitalWrite(motorPin, HIGH);   
         delay(100); // Activate for 1 second
       }else{
             digitalWrite(buzzerPin, LOW);   // Turn off buzzer
